@@ -1,10 +1,13 @@
+import NavBar from "@/components/NavBar"
+
 function Home() {
   return (
-    <h1
-      className='underline'
-    >
-      Hello World!
-    </h1>
+    <>
+      <NavBar />
+      <div>
+        Hello World!
+      </div>
+    </>
   )
 }
 
