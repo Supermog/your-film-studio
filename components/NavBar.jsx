@@ -99,19 +99,6 @@ function NavBar() {
               >
                 About
               </Disclosure.Button>
-              {/* {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current ? 'bg-gray-300' : 'text-gray-600 hover:bg-gray-200',
-                    'block px-3 py-2 rounded-md text-base font-medium'
-                  )}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))} */}
             </div>
           </Disclosure.Panel>
         </>

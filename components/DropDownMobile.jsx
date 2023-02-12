@@ -45,16 +45,16 @@ function DropDownMobile() {
                 )}
               >
                 <div className='bg-indigo-500 p-3 rounded float-left mr-3'>
-                    <img src={el.img} />
-                  </div>
-                  <div>
-                    <p>
-                      {el.title}
-                    </p>
-                    <p className='text-gray-400 text-xs'>
-                      {el.description}
-                    </p>
-                  </div>
+                  <img src={el.img} />
+                </div>
+                <div>
+                  <p>
+                    {el.title}
+                  </p>
+                  <p className='text-gray-400 text-xs'>
+                    {el.description}
+                  </p>
+                </div>
               </div>
             )
           })}
