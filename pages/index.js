@@ -1,5 +1,5 @@
 import NavBar from '@/components/NavBar'
-// import Footer from '@/components/Footer'
+import Footer from '@/components/Footer'
 import seats from '@/public/seats.jpg'
 import gearedAppLogo from '@/public/GearedAppLogo.svg'
 import logo from '@/public/Mark.svg'
@@ -121,7 +121,7 @@ function Home() {
               </div>
           </div>
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   )
