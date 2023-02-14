@@ -5,8 +5,8 @@ import {
 import classNames from '@/util/classNames'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import DropDown from './DropDown'
-import DropDownMobile from './DropDownMobile'
+import DropDown from './NavBar/DropDown'
+import DropDownMobile from './NavBar/DropDownMobile'
 
 function NavBar() {
 
@@ -41,7 +41,7 @@ function NavBar() {
                     'px-3 py-2 rounded-md text-sm font-medium'
                   )}
                 >
-                  Browse Films
+                  About
                 </a>
             </div>
             {/* Mobile view */}
@@ -68,7 +68,7 @@ function NavBar() {
                 href='#'
                 className={classNames(
                   'flex justify-center rounded-md border border-transparent',
-                  'bg-indigo-600 py-2 px-4 text-sm font-medium text-white',
+                  'bg-indigo-500 py-2 px-4 text-sm font-medium text-white',
                   'hover:bg-indigo-700 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                 )}
               >
