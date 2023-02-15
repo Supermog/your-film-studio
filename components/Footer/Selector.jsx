@@ -27,7 +27,7 @@ function Selector(props) {
           <div className="py-1">
             {values.map((el) => {
               return (
-                <Menu.Item>
+                <Menu.Item key={el}>
                   {({ active }) => (
                     <button
                       onClick={() => {

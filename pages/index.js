@@ -55,9 +55,9 @@ function Home() {
             </div>
             <div className='flex mt-10'>
               <div className='flex border-r-2 p-1 pr-5'>
-                {[0,1,2,3,4].map((el) => {
+                {[0,1,2,3,4].map((el, idx) => {
                   return (
-                    <StarIcon className='h-4 w-4 text-orange-300' />
+                    <StarIcon key={el} className='h-4 w-4 text-orange-300' />
                   )
                 })}
               </div>
@@ -103,7 +103,7 @@ function Home() {
             <div className='grid grid-rows-2 grid-cols-2 grid-flow-col gap-3 mt-10'>
               {stats.map((el) => {
                 return (
-                  <div className='mb-10'>
+                  <div className='mb-10' key={el.title}>
                     <div className='border-t-2 mb-5' />
                     <p className='text-gray-500 font-medium'>
                       {el.title}

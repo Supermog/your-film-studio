@@ -2,6 +2,11 @@ import Integrations from '../public/Integrations.svg'
 import PeopleWatching from '../public/PeopleWatching.svg'
 import UserAnalitics from '../public/UserAnalitics.svg'
 import PrivacyFirst from '../public/PrivacyFirst.svg'
+import facebookIcon from '@/public/Facebook.svg'
+import instagramIcon from '@/public/Instagram.svg'
+import twitterIcon from '@/public/Twitter.svg'
+import githubIcon from '@/public/Github.svg'
+import dribbleIcon from '@/public/Dribble.svg'
 
 export const dropdownContent = [
   {
@@ -129,6 +134,29 @@ export const footerData = [
         href: ''
       }
     ]
+  }
+]
+
+export const footerIcons = [
+  {
+    title: 'facebook',
+    icon: facebookIcon
+  },
+  {
+    title: 'instagram',
+    icon: instagramIcon
+  },
+  {
+    title: 'twitter',
+    icon: twitterIcon
+  },
+  {
+    title: 'github',
+    icon: githubIcon
+  },
+  {
+    title: 'dribble',
+    icon: dribbleIcon
   }
 ]
 
