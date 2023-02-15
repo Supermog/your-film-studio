@@ -175,3 +175,35 @@ export const currencies = [
   'GBP',
   'EUR'
 ]
+
+export const metricsStats = [
+  {
+    data: '8k+',
+    description: 'Companies use laoreet amet lacus nibh integer quis.'
+  },
+  {
+    data: '98%',
+    description: 'Customer satisfaction laoreet amet lacus nibh integer quis.'
+  },
+  {
+    data: '25k+',
+    description: 'Countries around the globe lacus nibh integer quis.'
+  },
+  {
+    data: '12m+',
+    description: 'Issues resolved lacus nibh integer quis.'
+  }
+]
+
+const generateYearsBetween = (startYear, endYear) => {
+  const endDate = endYear || new Date().getFullYear()
+  let years = []
+
+  for (let i = startYear; i <= endDate; i++) {
+    years.push(startYear.toString());
+    startYear++
+  }
+  return years
+}
+
+export const yearValues = generateYearsBetween(1970, 2020)

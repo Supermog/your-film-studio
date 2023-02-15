@@ -16,7 +16,7 @@ function NavBar() {
             <div className='items-center gap-5 hidden sm:flex'>
               <img src={logo.src} />
                 <a
-                  href='#'
+                  href='/films'
                   className={classNames(
                     'text-gray-600 hover:underline',
                     'px-3 py-2 rounded-md text-sm font-medium'
@@ -26,7 +26,7 @@ function NavBar() {
                 </a>
                 <DropDown />
                 <a
-                  href='#'
+                  href='/'
                   className={classNames(
                     'text-gray-600 hover:underline',
                     'px-3 py-2 rounded-md text-sm font-medium'
