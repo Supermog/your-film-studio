@@ -1,7 +1,4 @@
 import logo from '../public/Mark.svg'
-import {
-  ChevronDownIcon
-} from '@heroicons/react/20/solid'
 import classNames from '@/util/classNames'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -10,17 +7,11 @@ import DropDownMobile from './NavBar/DropDownMobile'
 
 function NavBar() {
 
-  const navigation = [
-    { name: 'Browse Films', href: '#', current: false},
-    { name: 'Features', icon: ChevronDownIcon},
-    { name: 'About', href: '/', current: true}
-  ]
-
   return (
     <Disclosure as="nav">
       {({ open }) => (
         <>
-          <div className='flex p-4 justify-between border-2'>
+          <div className='flex p-4 justify-between'>
             {/*Desktop view*/}
             <div className='items-center gap-5 hidden sm:flex'>
               <img src={logo.src} />
