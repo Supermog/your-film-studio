@@ -1,5 +1,3 @@
-import NavBar from '@/components/NavBar'
-import Footer from '@/components/Footer'
 import seats from '@/public/seats.jpg'
 import gearedAppLogo from '@/public/GearedAppLogo.svg'
 import logo from '@/public/Mark.svg'
@@ -14,7 +12,6 @@ function Home() {
 
   return (
     <>
-      <NavBar />
       <div className='h-full flex flex-col lg:gap-40 gap-24'>
         <div className={`mt-10 flex flex-col sm:flex-row sm:justify-between h-[550px]`}>
           <div className='lg:w-1/2 p-3 m-3 sm:p-10 sm:m-10'>
@@ -121,7 +118,6 @@ function Home() {
               </div>
           </div>
         </div>
-        <Footer />
       </div>
     </>
   )
