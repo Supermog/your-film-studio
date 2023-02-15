@@ -12,7 +12,7 @@ function Home() {
 
   return (
     <>
-      <div className='h-full flex flex-col lg:gap-40 gap-24'>
+      <div className='h-full flex flex-col lg:gap-40 gap-24 mb-16'>
         <div className={`mt-10 flex flex-col sm:flex-row sm:justify-between h-[550px]`}>
           <div className='lg:w-1/2 p-3 m-3 sm:p-10 sm:m-10'>
             <div className='sm:block flex justify-center'>
