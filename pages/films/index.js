@@ -1,11 +1,27 @@
-import { metricsStats, yearValues } from '@/util/constants'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { metricsStats, yearValues, img_url_base } from '@/util/constants'
+import { MagnifyingGlassIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import MultiSelectTextField from '@/components/MultiSelectTextFiled'
 import { useState } from 'react'
 import MultiSelector from '@/components/MultiSelector'
+import { getMovies } from '../api/movies'
+import { useQuery } from 'react-query'
+import SlideOver from '@/components/Films/SlideOver'
+import { useRouter } from 'next/router'
 
 function Films () {
 
+  const router = useRouter()
+
+  const page = router.query.page
+
+  const { status, error, data: movies } = useQuery({
+    queryKey: ['movies', page],
+    keepPreviousData: true,
+    queryFn: () => getMovies(parseInt(page) || 1)
+  })
+
+  const [open, setOpen] = useState(false)
+  const [slideOverContent, setSlideOverContent] = useState()
   const [genres, setGenres] = useState([])
   const [years, setYears] = useState([])
 
@@ -24,7 +40,7 @@ function Films () {
             />
           </div>
         </div>
-        <div className='mt-14 flex'>
+        <div className='mt-14 flex sm:flex-row flex-col gap-5 sm:gap-0'>
           <div className='w-full sm:w-1/4'>
             <p className='text-lg text-gray-500 mb-8'>
               Filters
@@ -49,6 +65,79 @@ function Films () {
                 onChange={setYears}
               />
             </div>
+          </div>
+          <div className='sm:w-3/4 w-full px-5'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-flow-row'>
+              {movies?.results ? movies.results.map((el) => {
+                return (
+                  <div
+                    key={el.title}
+                    className='hover:bg-gray-200 hover:cursor-pointer p-5 rounded-lg'
+                    onClick={() => {
+                      setSlideOverContent(el)
+                      setOpen(true)
+                    }}
+                  >
+                    <img src={`${img_url_base}/${el.poster_path}`} className='rounded-lg w-full'/>
+                    <p className='text-sm font-medium'>
+                      {el.title}
+                    </p>
+                    <p className='text-sm font-medium text-gray-500'>
+                      {el.genres[0].name}
+                    </p>
+                  </div>
+                )
+              }) : null}
+            </div>
+            {
+              movies ? (
+                <div className='mt-10'>
+                  <div className='flex justify-between'>
+                    <a
+                      className={`flex ${movies?.previousPage ? '' : 'pointer-events-none'} justify-self-start items-center gap-2 text-sm font-medium text-gray-500 hover:underline hover:cursor-pointer`}
+                      href={`/films?page=${movies?.previousPage}`}
+                    >
+                      <ArrowLeftIcon className='h-5 w-5'/>
+                      <p>
+                        Previous
+                      </p>
+                    </a>
+                    <div className='flex gap-x-5'>
+                      {movies?.page !== 1 && movies?.previousPage !== 1 ? (
+                        <a
+                          className='text-gray-500'
+                          href={`/films?page=1`}
+                        >
+                          1
+                        </a>
+                      ) : null}
+                      <a
+                        className='pointer-events-none text-black'
+                      >
+                        {movies?.page}
+                      </a>
+                      {movies?.page !== movies?.total_pages && movies?.nextPage !== movies.total_pages ? (
+                        <a
+                          className='text-gray-500'
+                          href={`/films?page=${movies?.total_pages}`}
+                        >
+                          {movies?.total_pages}
+                        </a>
+                      ) : null}
+                    </div>
+                    <a
+                      className={`flex ${movies?.nextPage ? '' : 'pointer-events-none'} items-center gap-2 text-sm font-medium text-gray-500 hover:underline hover:cursor-pointer`}
+                      href={`/films?page=${movies?.nextPage}`}
+                    >
+                      <p>
+                        Next
+                      </p>
+                      <ArrowRightIcon className='h-5 w-5'/>
+                    </a>
+                  </div>
+                </div>
+              ) : null
+            }
           </div>
         </div>
       </div>
@@ -79,6 +168,11 @@ function Films () {
           </div>
         </div>
       </div>
+      <SlideOver
+        content={slideOverContent}
+        onClose={setOpen}
+        open={open}
+      />
     </div>
   )
 }

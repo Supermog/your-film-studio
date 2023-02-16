@@ -207,3 +207,7 @@ const generateYearsBetween = (startYear, endYear) => {
 }
 
 export const yearValues = generateYearsBetween(1970, 2020)
+
+export const APIkey = '3082c50c420141c82342132e685c2aaf'
+
+export const img_url_base = 'https://image.tmdb.org/t/p/w300'
