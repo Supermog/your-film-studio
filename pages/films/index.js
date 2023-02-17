@@ -21,7 +21,7 @@ function Films () {
   })
 
   const [open, setOpen] = useState(false)
-  const [slideOverContent, setSlideOverContent] = useState()
+  const [slideOverId, setSlideOverId] = useState()
   const [genres, setGenres] = useState([])
   const [years, setYears] = useState([])
 
@@ -74,7 +74,7 @@ function Films () {
                     key={el.title}
                     className='hover:bg-gray-200 hover:cursor-pointer p-5 rounded-lg'
                     onClick={() => {
-                      setSlideOverContent(el)
+                      setSlideOverId(el.id)
                       setOpen(true)
                     }}
                   >
@@ -169,7 +169,7 @@ function Films () {
         </div>
       </div>
       <SlideOver
-        content={slideOverContent}
+        movieId={slideOverId}
         onClose={setOpen}
         open={open}
       />
