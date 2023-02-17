@@ -1,12 +1,13 @@
 import { metricsStats, yearValues, img_url_base } from '@/util/constants'
 import { MagnifyingGlassIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import MultiSelectTextField from '@/components/MultiSelectTextFiled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import MultiSelector from '@/components/MultiSelector'
 import { getMovies } from '../api/movies'
 import { useQuery } from 'react-query'
 import SlideOver from '@/components/Films/SlideOver'
 import { useRouter } from 'next/router'
+
 
 function Films () {
 
@@ -14,16 +15,16 @@ function Films () {
 
   const page = router.query.page
 
-  const { status, error, data: movies } = useQuery({
-    queryKey: ['movies', page],
-    keepPreviousData: true,
-    queryFn: () => getMovies(parseInt(page) || 1)
-  })
-
   const [open, setOpen] = useState(false)
   const [slideOverId, setSlideOverId] = useState()
   const [genres, setGenres] = useState([])
   const [years, setYears] = useState([])
+
+  const { status, error, data: movies } = useQuery({
+    queryKey: ['movies', page, years, genres],
+    keepPreviousData: true,
+    queryFn: () => getMovies(parseInt(page) || 1, years, genres)
+  })
 
   return (
     <div className=''>
@@ -66,7 +67,7 @@ function Films () {
               />
             </div>
           </div>
-          <div className='sm:w-3/4 w-full px-5'>
+          <div className='sm:w-3/4 w-full pl-5'>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-flow-row'>
               {movies?.results ? movies.results.map((el) => {
                 return (
@@ -83,7 +84,7 @@ function Films () {
                       {el.title}
                     </p>
                     <p className='text-sm font-medium text-gray-500'>
-                      {el.genres[0].name}
+                      {el.genres[0]?.name}
                     </p>
                   </div>
                 )

@@ -1,8 +1,13 @@
 import axios from 'axios'
 import { APIkey } from '@/util/constants'
 
-export const getMovies = async (page) => {
-  const moviesReq = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${APIkey}&language=en-US&page=${page}`)
+export const getMovies = async (page, years = [], genres = []) => {
+  const release_year_filter = years.join('|')
+  const genre_filter = genres.map((genreObj) => genreObj.value).join('|')
+
+  const moviesReq = await axios.get(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&page=${page}&primary_release_year=${release_year_filter}&with_genres=${genre_filter}`
+  )
   const genresReq = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${APIkey}&language=en-US`)
 
   const movies = {

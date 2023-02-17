@@ -1,5 +1,6 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { GenreContext } from '@/contexts/GenreContext'
 
 function MultiSelectTextField(props) {
   const {
@@ -8,6 +9,8 @@ function MultiSelectTextField(props) {
     values,
     onChange
   } = props
+
+  const genresVal = useContext(GenreContext)
 
   const [inputValue, setInputValue] = useState('')
 
@@ -27,22 +30,22 @@ function MultiSelectTextField(props) {
         </div>
       </div>
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault()
           if (
             inputValue &&
             inputValue.length > 0 &&
             !values.find(el => el.value === inputValue.toLocaleLowerCase())
             ) {
-            onChange((prev) => (
-              [
-                ...prev,
-                {
-                  text: inputValue.charAt(0).toLocaleUpperCase() + inputValue.slice(1),
-                  value: inputValue.toLocaleLowerCase()
-                }
-              ]
-            ))
+                onChange((prev) => (
+                  [
+                    ...prev,
+                    {
+                      text: inputValue.charAt(0).toLocaleUpperCase() + inputValue.slice(1),
+                      value: genresVal.find((genreObj) => (genreObj.name === inputValue.charAt(0).toLocaleUpperCase() + inputValue.slice(1).toLocaleLowerCase())).id
+                    }
+                  ]
+                ))
           }
           setInputValue('')
         }}
