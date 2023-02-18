@@ -32,7 +32,7 @@ function MultiSelector(props) {
           >
             <div className='flex justify-start w-full flex-wrap'>
               {selectedValues.length < 1 ? 'Choose' : selectedValues.map((el, idx) => {
-                return idx === selectedValues.length - 1 ? <p>{el}</p> : <p>{`${el},`}</p>
+                return idx === selectedValues.length - 1 ? <p>{el}</p> : <p>{el},&nbsp;</p>
               })}
             </div>
             <div>

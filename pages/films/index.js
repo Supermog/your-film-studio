@@ -1,22 +1,19 @@
 import { metricsStats, yearValues, img_url_base } from '@/util/constants'
 import { MagnifyingGlassIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import MultiSelectTextField from '@/components/MultiSelectTextFiled'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import MultiSelector from '@/components/MultiSelector'
 import { getMovies } from '../api/movies'
 import { useQuery } from 'react-query'
 import SlideOver from '@/components/Films/SlideOver'
-import { useRouter } from 'next/router'
+import classNames from '@/util/classNames'
 
 
 function Films () {
 
-  const router = useRouter()
-
-  const page = router.query.page
-
   const [open, setOpen] = useState(false)
   const [slideOverId, setSlideOverId] = useState()
+  const [page, setPage] = useState(1)
   const [genres, setGenres] = useState([])
   const [years, setYears] = useState([])
 
@@ -79,7 +76,7 @@ function Films () {
                       setOpen(true)
                     }}
                   >
-                    <img src={`${img_url_base}/${el.poster_path}`} className='rounded-lg w-full'/>
+                    <img src={`${img_url_base}/${el.poster_path}`} alt='Missing image' className='rounded-lg w-full'/>
                     <p className='text-sm font-medium'>
                       {el.title}
                     </p>
@@ -94,47 +91,69 @@ function Films () {
               movies ? (
                 <div className='mt-10'>
                   <div className='flex justify-between'>
-                    <a
-                      className={`flex ${movies?.previousPage ? '' : 'pointer-events-none'} justify-self-start items-center gap-2 text-sm font-medium text-gray-500 hover:underline hover:cursor-pointer`}
-                      href={`/films?page=${movies?.previousPage}`}
+                    <button
+                      className={classNames(
+                        `flex ${movies?.previousPage ? 'hover:underline hover:cursor-pointer' : 'disabled hover:cursor-default'}`,
+                        'justify-self-start items-center gap-2 text-sm font-medium text-gray-500'
+                      )}
+                      onClick={() => {
+                        if (movies.previousPage) {
+                          setPage(movies.previousPage)
+                        }
+                      }}
                     >
                       <ArrowLeftIcon className='h-5 w-5'/>
                       <p>
                         Previous
                       </p>
-                    </a>
+                    </button>
                     <div className='flex gap-x-5'>
                       {movies?.page !== 1 && movies?.previousPage !== 1 ? (
-                        <a
-                          className='text-gray-500'
-                          href={`/films?page=1`}
+                        <button
+                          className='text-gray-500 hover:underline hover:cursor-pointer'
+                          onClick={() => {
+                            if (page !== 1) {
+                              setPage(1)
+                            }
+                          }}
                         >
                           1
-                        </a>
+                        </button>
                       ) : null}
-                      <a
+                      <button
                         className='pointer-events-none text-black'
                       >
                         {movies?.page}
-                      </a>
+                      </button>
                       {movies?.page !== movies?.total_pages && movies?.nextPage !== movies.total_pages ? (
-                        <a
-                          className='text-gray-500'
-                          href={`/films?page=${movies?.total_pages}`}
+                        <button
+                          className='text-gray-500 hover:underline hover:cursor-pointer'
+                          onClick={() => {
+                            if (page !== movies.total_pages) {
+                              setPage(movies.total_pages)
+                            }
+                          }}
                         >
                           {movies?.total_pages}
-                        </a>
+                        </button>
                       ) : null}
                     </div>
-                    <a
-                      className={`flex ${movies?.nextPage ? '' : 'pointer-events-none'} items-center gap-2 text-sm font-medium text-gray-500 hover:underline hover:cursor-pointer`}
-                      href={`/films?page=${movies?.nextPage}`}
+                    <button
+                        className={classNames(
+                          `flex ${movies?.nextPage ? 'hover:underline hover:cursor-pointer' : 'disabled hover:cursor-default'}`,
+                          'justify-self-start items-center gap-2 text-sm font-medium text-gray-500'
+                        )}
+                        onClick={() => {
+                          if (movies.nextPage) {
+                            setPage(movies.nextPage)
+                          }
+                        }}
                     >
                       <p>
                         Next
                       </p>
                       <ArrowRightIcon className='h-5 w-5'/>
-                    </a>
+                    </button>
                   </div>
                 </div>
               ) : null

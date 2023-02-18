@@ -16,6 +16,18 @@ function MultiSelectTextField(props) {
 
   return (
     <div>
+      <button
+        onClick={() => {
+          const genreTrue = 'Horror'
+          const genreFalse = 'Invalid lol'
+
+          const valid = genresVal.find(el => genreTrue === el.name)
+          const invalid = genresVal.find(el => genreFalse === el.name)
+          console.log(valid, invalid)
+        }}
+      >
+        test
+      </button>
       <div className='flex justify-between items-center mb-5'>
         <p className='text-gray-400'>
           {title.toUpperCase()}
@@ -32,17 +44,19 @@ function MultiSelectTextField(props) {
       <form
         onSubmit={async (e) => {
           e.preventDefault()
+          const genre = genresVal.find((obj) => (obj.name === inputValue.charAt(0).toLocaleUpperCase() + inputValue.slice(1).toLocaleLowerCase()))
           if (
             inputValue &&
             inputValue.length > 0 &&
-            !values.find(el => el.value === inputValue.toLocaleLowerCase())
+            !values.find(el => el.value === inputValue.toLocaleLowerCase()) &&
+            genre
             ) {
                 onChange((prev) => (
                   [
                     ...prev,
                     {
                       text: inputValue.charAt(0).toLocaleUpperCase() + inputValue.slice(1),
-                      value: genresVal.find((genreObj) => (genreObj.name === inputValue.charAt(0).toLocaleUpperCase() + inputValue.slice(1).toLocaleLowerCase())).id
+                      value: genre.id
                     }
                   ]
                 ))
