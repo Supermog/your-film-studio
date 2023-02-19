@@ -24,6 +24,8 @@ function Films () {
     queryFn: () => getMovies(parseInt(page) || 1, movieName, years, genres)
   })
 
+  console.log(movies)
+
   return (
     <div className=''>
       <div className='p-5 md:p-20'>

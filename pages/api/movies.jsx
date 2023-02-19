@@ -7,16 +7,18 @@ export const getMovies = async (page, movieName = '', years = [], genres = []) =
   const genre_filter = genres.map((genreObj) => genreObj.value).join('|')
   const name_filter = movieName.split(' ').join('+')
 
-  const reqURL = name_filter ? searchLink(APIkey, page, name_filter) : discoverLink(APIkey, page, release_year_filter)
+  const reqURL = name_filter ? searchLink(APIkey, page, name_filter) : discoverLink(APIkey, page, release_year_filter, genre_filter)
 
   const moviesReq = await axios.get(reqURL)
   const genresReq = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${APIkey}&language=en-US`)
 
+  const total_pages = moviesReq.data.total_pages > 10 ? 10 : moviesReq.data.total_pages
+
   const movies = {
     page: moviesReq.data.page,
-    nextPage: moviesReq.data.page < 10 ? moviesReq.data.page+1 : null,
+    nextPage: moviesReq.data.page < total_pages ? moviesReq.data.page + 1 : null,
     previousPage: moviesReq.data.page <= 1 ? null : moviesReq.data.page-1,
-    total_pages: 10,
+    total_pages: total_pages,
     total_results: moviesReq.data.total_results,
     results: moviesReq.data.results.map((el) => {
     return {
