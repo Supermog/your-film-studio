@@ -16,18 +16,6 @@ function MultiSelectTextField(props) {
 
   return (
     <div>
-      <button
-        onClick={() => {
-          const genreTrue = 'Horror'
-          const genreFalse = 'Invalid lol'
-
-          const valid = genresVal.find(el => genreTrue === el.name)
-          const invalid = genresVal.find(el => genreFalse === el.name)
-          console.log(valid, invalid)
-        }}
-      >
-        test
-      </button>
       <div className='flex justify-between items-center mb-5'>
         <p className='text-gray-400'>
           {title.toUpperCase()}
