@@ -14,7 +14,9 @@ function NavBar() {
           <div className='flex p-4 justify-between'>
             {/*Desktop view*/}
             <div className='items-center gap-5 hidden sm:flex'>
-              <img src={logo.src} />
+              {logo?.src ? (
+                <img src={logo.src} alt='logo'/>
+              ) : null}
                 <a
                   href='/films'
                   className={classNames(

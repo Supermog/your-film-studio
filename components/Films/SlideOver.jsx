@@ -78,7 +78,15 @@ function SlideOver(props) {
                       {cont ? (
                         <div>
                           <div className='flex justify-center'>
-                            <img src={`${img_url_base}/${cont.poster_path}`} className='rounded-lg w-1/2'/>
+                            {cont.poster_path ? (
+                              <img src={`${img_url_base}/${cont.poster_path}`} alt='Missing image' className='rounded-lg w-1/2'/>
+                            ) : (
+                              <div
+                                className='flex justify-center items-center h-full'
+                              >
+                                Missing image
+                              </div>
+                            )}
                           </div>
                           <div className='flex justify-between mt-5'>
                             <div>

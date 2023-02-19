@@ -16,7 +16,7 @@ function Home() {
         <div className={`mt-10 flex flex-col sm:flex-row sm:justify-between h-[550px]`}>
           <div className='lg:w-1/2 p-3 m-3 sm:p-10 sm:m-10'>
             <div className='sm:block flex justify-center'>
-              <img src={logo.src} className='h-[42px] rounded-xl' />
+              <img src={logo.src} alt='logo' className='h-[42px] rounded-xl' />
             </div>
             <div className='text-sm font-medium flex gap-2 justify-center sm:justify-start items-center mt-12'>
               <div className='bg-indigo-100 text-indigo-600 rounded-xl p-1 px-2 hover:underline hover:cursor-pointer'>
@@ -64,7 +64,9 @@ function Home() {
             </div>
           </div>
           <div className='flex sm:justify-end hidden lg:flex w-1/2'>
-            <img src={seats.src} className='h-full w-full'/>
+            {seats?.src ? (
+              <img src={seats.src} alt='seats' className='h-full w-full'/>
+            ) : null}
           </div>
         </div>
         <div className='flex gap-20 lg:flex-row flex-col items-center lg:items-start'>
@@ -75,7 +77,9 @@ function Home() {
           )}
           >
             <div className='sm:mt-60 mt-10 ml-7'>
-              <img src={gearedAppLogo.src} />
+              {gearedAppLogo?.src ? (
+                <img src={gearedAppLogo.src} alt='GearedApp' />
+              ) : null}
             </div>
             <div className='mx-10 mt-14'>
               Tincidunt integer commodo, cursus etiam aliquam neque, et. Consectetur pretium in volutpat, diam. Montes, magna cursus nulla feugiat dignissim id lobortis amet. 
