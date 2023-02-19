@@ -211,3 +211,11 @@ export const yearValues = generateYearsBetween(1970, 2020)
 export const APIkey = '3082c50c420141c82342132e685c2aaf'
 
 export const img_url_base = 'https://image.tmdb.org/t/p/w300'
+
+export const discoverLink = (APIkey, page, release_year_filter, genre_filter) => (
+  `https://api.themoviedb.org/3/discover/movie?api_key=${APIkey}&page=${page}&primary_release_year=${release_year_filter}&with_genres=${genre_filter}`
+)
+
+export const searchLink = (APIkey, page, name) => (
+  `https://api.themoviedb.org/3/search/movie?api_key=${APIkey}&page=${page}&query=${name}`
+)

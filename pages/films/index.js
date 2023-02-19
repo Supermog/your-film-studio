@@ -1,7 +1,7 @@
 import { metricsStats, yearValues, img_url_base } from '@/util/constants'
 import { MagnifyingGlassIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import MultiSelectTextField from '@/components/MultiSelectTextFiled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import MultiSelector from '@/components/MultiSelector'
 import { getMovies } from '../api/movies'
 import { useQuery } from 'react-query'
@@ -16,11 +16,12 @@ function Films () {
   const [page, setPage] = useState(1)
   const [genres, setGenres] = useState([])
   const [years, setYears] = useState([])
+  const [movieName, setMovieName] = useState('')
 
   const { status, error, data: movies } = useQuery({
-    queryKey: ['movies', page, years, genres],
+    queryKey: ['movies', movieName, page, years, genres],
     keepPreviousData: true,
-    queryFn: () => getMovies(parseInt(page) || 1, years, genres)
+    queryFn: () => getMovies(parseInt(page) || 1, movieName, years, genres)
   })
 
   return (
@@ -35,6 +36,10 @@ function Films () {
             <input
               className='w-full h-10 p-2 border-0 focus:outline-none rounded-md'
               placeholder='Search'
+              value={movieName}
+              onChange={(e) => {
+                setMovieName(e.target.value)
+              }}
             />
           </div>
         </div>
@@ -65,28 +70,44 @@ function Films () {
             </div>
           </div>
           <div className='sm:w-3/4 w-full pl-5'>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-flow-row'>
-              {movies?.results ? movies.results.map((el) => {
-                return (
-                  <div
-                    key={el.title}
-                    className='hover:bg-gray-200 hover:cursor-pointer p-5 rounded-lg'
-                    onClick={() => {
-                      setSlideOverId(el.id)
-                      setOpen(true)
-                    }}
-                  >
-                    <img src={`${img_url_base}/${el.poster_path}`} alt='Missing image' className='rounded-lg w-full'/>
-                    <p className='text-sm font-medium'>
-                      {el.title}
-                    </p>
-                    <p className='text-sm font-medium text-gray-500'>
-                      {el.genres[0]?.name}
-                    </p>
-                  </div>
-                )
-              }) : null}
-            </div>
+            {status === 'loading' ? (
+              <div>
+                Loading...
+              </div>
+            ) : (
+              <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-flow-row'>
+                {movies?.results ? movies.results.map((el) => {
+                  return (
+                    <div
+                      key={el.id}
+                      className='hover:bg-gray-200 hover:cursor-pointer p-5 rounded-lg flex flex-col justify-between'
+                      onClick={() => {
+                        setSlideOverId(el.id)
+                        setOpen(true)
+                      }}
+                    >
+                      {el.poster_path ? (
+                        <img src={`${img_url_base}/${el.poster_path}`} alt='Missing image' className='rounded-lg w-full'/>
+                      ) : (
+                        <div
+                          className='flex justify-center items-center h-full'
+                        >
+                          Missing image
+                        </div>
+                      )}
+                      <div>
+                        <p className='text-sm font-medium'>
+                          {el.title}
+                        </p>
+                        <p className='text-sm font-medium text-gray-500'>
+                          {el.genres[0]?.name}
+                        </p>
+                      </div>
+                    </div>
+                  )
+                }) : null}
+              </div>
+            )}
             {
               movies ? (
                 <div className='mt-10'>
