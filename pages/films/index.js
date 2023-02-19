@@ -1,12 +1,13 @@
 import { metricsStats, yearValues, img_url_base } from '@/util/constants'
 import { MagnifyingGlassIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import MultiSelectTextField from '@/components/MultiSelectTextFiled'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import MultiSelector from '@/components/MultiSelector'
 import { getMovies } from '../api/movies'
 import { useQuery } from 'react-query'
 import SlideOver from '@/components/Films/SlideOver'
 import classNames from '@/util/classNames'
+import fadingProgrammer from '@/public/FadingProgrammer.jpg'
 
 
 function Films () {
@@ -23,8 +24,6 @@ function Films () {
     keepPreviousData: true,
     queryFn: () => getMovies(parseInt(page) || 1, movieName, years, genres)
   })
-
-  console.log(movies)
 
   return (
     <div className=''>
@@ -111,7 +110,7 @@ function Films () {
               </div>
             )}
             {
-              movies ? (
+              movies?.results ? (
                 <div className='mt-10'>
                   <div className='flex justify-between'>
                     <button
@@ -184,8 +183,8 @@ function Films () {
           </div>
         </div>
       </div>
-      <div className='w-full flex w-full bg-gradient-to-r from-gray-900 to-gray-500'>
-        <div className='md:pl-16 md:pt-20 p-10 md:w-1/2 text-white'>
+      <div className='w-full z-10 flex flex-row xl:bg-gray-900 max-xl:bg-gradient-to-r max-xl:from-gray-900 max-xl:to-gray-500'>
+        <div className='md:pl-16 md:pt-20 p-10 lg:w-1/2 text-white'>
           <div className='text-sm text-indigo-400 font-medium mb-5'>
             VALUABLE METRICS
           </div>
@@ -210,6 +209,19 @@ function Films () {
             })}
           </div>
         </div>
+        <div className='absolute hidden xl:block inset-x-1/2 w-1/6 h-full bg-gradient-to-r from-gray-900'
+        />
+        {fadingProgrammer?.src ? (
+          <div className='w-1/2 h-full xl:block hidden text-white'>
+            <img src={fadingProgrammer.src} alt='Missing image' className='h-full w-full' />
+          </div>
+        ) : (
+          <div
+            className='w-1/2 hidden xl:flex justify-center items-center text-white'
+          >
+            Missing image
+          </div>
+        )}
       </div>
       <SlideOver
         movieId={slideOverId}

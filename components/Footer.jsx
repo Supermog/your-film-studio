@@ -14,7 +14,7 @@ function Footer() {
   const [currency, setCurrency] = useState(currencies.at(0))
 
   return (
-    <div className='bg-gray-50 py-10 lg:px-24 md:px-16 px-5 w-full flex flex-col gap-y-10 text-sm'>
+    <div className='bg-gray-50 py-10 lg:px-24 md:px-16 px-5 w-full flex flex-col z-20 gap-y-10 text-sm'>
       <div className='flex sm:flex-row flex-col'>
         <div className='grid sm:grid-cols-4 gap-10 sm:gap-0 mb-10 sm:mb-0 grid-cols-2 grid-flow-row sm:w-4/5 w-full'>
           {footerData.map((el) => {
