@@ -1,5 +1,13 @@
-import { metricsStats, yearValues, img_url_base } from '@/util/constants'
-import { MagnifyingGlassIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
+import {
+  metricsStats,
+  yearValues,
+  img_url_base
+} from '@/util/constants'
+import {
+  MagnifyingGlassIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon
+} from '@heroicons/react/20/solid'
 import MultiSelectTextField from '@/components/MultiSelectTextFiled'
 import { useState } from 'react'
 import MultiSelector from '@/components/MultiSelector'
@@ -28,7 +36,10 @@ function Films () {
     <div>
       <div className='p-5 md:p-20'>
         <div className='flex flex-col items-center rounded-md gap-y-5 bg-gray-100 border-2 border-gray-200 px-10 py-5'>
-          <h1 className='text-3xl font-semibold'>
+          <h1
+            className='text-3xl font-semibold'
+            data-testid='search-text'
+          >
             Search for Films
           </h1>
           <div className='flex w-full bg-white items-center pl-2 rounded-md'>
@@ -122,8 +133,9 @@ function Films () {
                           setPage(movies.previousPage)
                         }
                       }}
+                      data-testid='previous-button'
                     >
-                      <ArrowLeftIcon className='h-5 w-5'/>
+                      <ArrowLeftIcon className='h-5 w-5' data-testid='arrow-left'/>
                       <p>
                         Previous
                       </p>
@@ -160,20 +172,21 @@ function Films () {
                       ) : null}
                     </div>
                     <button
-                        className={classNames(
-                          `flex ${movies?.nextPage ? 'hover:underline hover:cursor-pointer' : 'disabled hover:cursor-default'}`,
-                          'justify-self-start items-center gap-2 text-sm font-medium text-gray-500'
-                        )}
-                        onClick={() => {
-                          if (movies.nextPage) {
-                            setPage(movies.nextPage)
-                          }
-                        }}
+                      className={classNames(
+                        `flex ${movies?.nextPage ? 'hover:underline hover:cursor-pointer' : 'disabled hover:cursor-default'}`,
+                        'justify-self-start items-center gap-2 text-sm font-medium text-gray-500'
+                      )}
+                      onClick={() => {
+                        if (movies.nextPage) {
+                          setPage(movies.nextPage)
+                        }
+                      }}
+                      data-testid='next-button'
                     >
                       <p>
                         Next
                       </p>
-                      <ArrowRightIcon className='h-5 w-5'/>
+                      <ArrowRightIcon className='h-5 w-5' data-testid='right-icon'/>
                     </button>
                   </div>
                 </div>
