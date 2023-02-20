@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
 
   const [genres, setGenres] = useState([])
 
-  const genresValue = useMemo(() => genres, [])
+  const genresValue = useMemo(() => genres, [genres])
 
   useEffect(() => {
     (async () => {
