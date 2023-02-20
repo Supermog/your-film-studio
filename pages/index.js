@@ -52,11 +52,9 @@ function Home() {
             </div>
             <div className='flex mt-10'>
               <div className='flex border-r-2 p-1 pr-5'>
-                <StarIcon className='h-4 w-4 text-orange-300' />
-                <StarIcon className='h-4 w-4 text-orange-300' />
-                <StarIcon className='h-4 w-4 text-orange-300' />
-                <StarIcon className='h-4 w-4 text-orange-300' />
-                <StarIcon className='h-4 w-4 text-orange-300' />
+                {Array(5).fill('h-4 w-4 text-orange-300').map((el, idx) => (
+                  <StarIcon key={idx} className={el} />
+                ))}
               </div>
               <p className='pl-5'>
                 Rated 5 stars by over 500 beta users
