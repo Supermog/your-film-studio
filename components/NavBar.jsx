@@ -76,7 +76,7 @@ function NavBar() {
             <div className='space-y-1 px-2 pt-2 pb-3'>
               <Disclosure.Button
                 as='a'
-                href='#'
+                href='/films'
                 className={classNames(
                   'text-gray-600 hover:bg-gray-200',
                   'block px-3 py-2 rounded-md text-base font-medium'
@@ -87,7 +87,7 @@ function NavBar() {
               <DropDownMobile />
               <Disclosure.Button
                 as='a'
-                href='#'
+                href='/'
                 className={classNames(
                   'text-gray-600 hover:bg-gray-200',
                   'block px-3 py-2 rounded-md text-base font-medium'
