@@ -8,7 +8,7 @@ import DropDownMobile from './NavBar/DropDownMobile'
 function NavBar() {
 
   return (
-    <Disclosure as="nav">
+    <Disclosure as='nav'>
       {({ open }) => (
         <>
           <div className='flex p-4 justify-between'>
@@ -39,11 +39,11 @@ function NavBar() {
             </div>
             {/* Mobile view */}
             <div className='sm:hidden'>
-              <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+              <Disclosure.Button className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
                 {open ? (
-                  <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  <XMarkIcon className='block h-6 w-6' aria-hidden='true' />
                 ) : (
-                  <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  <Bars3Icon className='block h-6 w-6' aria-hidden='true' />
                 )}
               </Disclosure.Button>
             </div>
@@ -69,10 +69,10 @@ function NavBar() {
               </a>
             </div>
           </div>
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3">
+          <Disclosure.Panel className='sm:hidden'>
+            <div className='space-y-1 px-2 pt-2 pb-3'>
               <Disclosure.Button
-                as="a"
+                as='a'
                 href='#'
                 className={classNames(
                   'text-gray-600 hover:bg-gray-200',
@@ -83,7 +83,7 @@ function NavBar() {
               </Disclosure.Button>
               <DropDownMobile />
               <Disclosure.Button
-                as="a"
+                as='a'
                 href='#'
                 className={classNames(
                   'text-gray-600 hover:bg-gray-200',

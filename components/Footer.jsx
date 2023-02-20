@@ -3,10 +3,10 @@ import {
   currencies,
   languages,
   footerIcons
-} from "@/util/constants"
-import Selector from "./Footer/Selector"
-import { useState } from "react"
-import classNames from "@/util/classNames"
+} from '@/util/constants'
+import Selector from './Footer/Selector'
+import { useState } from 'react'
+import classNames from '@/util/classNames'
 
 function Footer() {
 

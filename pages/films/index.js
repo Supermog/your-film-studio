@@ -9,7 +9,6 @@ import SlideOver from '@/components/Films/SlideOver'
 import classNames from '@/util/classNames'
 import fadingProgrammer from '@/public/FadingProgrammer.jpg'
 
-
 function Films () {
 
   const [open, setOpen] = useState(false)
@@ -26,7 +25,7 @@ function Films () {
   })
 
   return (
-    <div className=''>
+    <div>
       <div className='p-5 md:p-20'>
         <div className='flex flex-col items-center rounded-md gap-y-5 bg-gray-100 border-2 border-gray-200 px-10 py-5'>
           <h1 className='text-3xl font-semibold'>
