@@ -1,7 +1,10 @@
 import logo from '../public/Mark.svg'
 import classNames from '@/util/classNames'
 import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import {
+  Bars3Icon,
+  XMarkIcon
+} from '@heroicons/react/24/outline'
 import DropDown from './NavBar/DropDown'
 import DropDownMobile from './NavBar/DropDownMobile'
 

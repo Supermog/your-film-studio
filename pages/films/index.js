@@ -1,5 +1,13 @@
-import { metricsStats, yearValues, img_url_base } from '@/util/constants'
-import { MagnifyingGlassIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
+import {
+  metricsStats,
+  yearValues,
+  img_url_base
+} from '@/util/constants'
+import {
+  MagnifyingGlassIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon
+} from '@heroicons/react/20/solid'
 import MultiSelectTextField from '@/components/MultiSelectTextFiled'
 import { useState } from 'react'
 import MultiSelector from '@/components/MultiSelector'

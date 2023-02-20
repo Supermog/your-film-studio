@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon, HeartIcon } from '@heroicons/react/24/outline'
 import { img_url_base } from '@/util/constants'
