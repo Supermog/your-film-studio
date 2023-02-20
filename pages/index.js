@@ -1,4 +1,4 @@
-import seats from '@/public/seats.jpg'
+import seats from '@/public/Seats.jpg'
 import gearedAppLogo from '@/public/GearedAppLogo.svg'
 import logo from '@/public/Mark.svg'
 import {
