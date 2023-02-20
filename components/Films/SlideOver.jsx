@@ -1,28 +1,20 @@
-import { useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon, HeartIcon } from '@heroicons/react/24/outline'
 import { img_url_base } from '@/util/constants'
 import classNames from '@/util/classNames'
-import { APIkey } from '@/util/constants'
-import axios from 'axios'
+import { useQuery } from 'react-query'
+import { getMovie } from '@/pages/api/movies'
 
 const options = { year: 'numeric', month: 'long', day: 'numeric' }
 
 function SlideOver(props) {
   const { movieId, onClose, open } = props
 
-  const [cont, setCont] = useState()
-
-  useEffect(() => {
-    if (open) {
-      (async () => {
-        const cont = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${APIkey}&language=en-US`)
-        setCont(cont.data)
-      })()
-    } else {
-      setTimeout(() => { setCont() }, 200)
-    }
-  }, [open])
+  const { status, data: movie } = useQuery({
+    queryKey: ['movie', movieId],
+    enabled: open,
+    queryFn: () => getMovie(movieId)
+  })
 
   return (
     <Transition.Root show={open} as='div'>
@@ -75,11 +67,11 @@ function SlideOver(props) {
                   </Transition.Child>
                   <div className='flex h-full flex-col overflow-y-auto bg-white py-6 shadow-xl'>
                     <div className='relative mt-6 flex-1 px-4 sm:px-6'>
-                      {cont ? (
+                      {status === 'success' ? (
                         <div>
                           <div className='flex justify-center'>
-                            {cont.poster_path ? (
-                              <img src={`${img_url_base}/${cont.poster_path}`} alt='Missing image' className='rounded-lg w-1/2'/>
+                            {movie.poster_path ? (
+                              <img src={`${img_url_base}/${movie.poster_path}`} alt='Missing image' className='rounded-lg w-1/2'/>
                             ) : (
                               <div
                                 className='flex justify-center items-center h-full'
@@ -91,12 +83,12 @@ function SlideOver(props) {
                           <div className='flex justify-between mt-5'>
                             <div>
                               <p className='text-lg font-medium'>
-                                {cont.title}
+                                {movie.title}
                               </p>
                               <div className='flex text-gray-500'>
-                              {cont.genres.map((genre, idx) => {
+                              {movie.genres.map((genre, idx) => {
                                 return (
-                                    `${genre.name}${idx === cont.genres.length-1 ? '' : ', '}`
+                                    `${genre.name}${idx === movie.genres.length-1 ? '' : ', '}`
                                 )
                               })}
                               </div>
@@ -115,7 +107,7 @@ function SlideOver(props) {
                                 Release Date
                               </p>
                               <p className='text-sm font-medium'>
-                                {new Date(cont.release_date).toLocaleDateString('en-US', options)}
+                                {new Date(movie.release_date).toLocaleDateString('en-US', options)}
                               </p>
                             </div>
                             <div className='border-t-2' />
@@ -124,7 +116,7 @@ function SlideOver(props) {
                                 Metascore Rating
                               </p>
                               <p className='text-sm font-medium'>
-                                {cont.vote_average}
+                                {movie.vote_average}
                               </p>
                             </div>
                             <div className='border-t-2' />
@@ -133,7 +125,7 @@ function SlideOver(props) {
                                 Runtime
                               </p>
                               <p className='text-sm font-medium'>
-                                {cont.runtime}m
+                                {movie.runtime}m
                               </p>
                             </div>
                             <div className='border-t-2' />

@@ -52,11 +52,11 @@ function Home() {
             </div>
             <div className='flex mt-10'>
               <div className='flex border-r-2 p-1 pr-5'>
-                {[0,1,2,3,4].map((el, idx) => {
-                  return (
-                    <StarIcon key={el} className='h-4 w-4 text-orange-300' />
-                  )
-                })}
+                <StarIcon key={el} className='h-4 w-4 text-orange-300' />
+                <StarIcon key={el} className='h-4 w-4 text-orange-300' />
+                <StarIcon key={el} className='h-4 w-4 text-orange-300' />
+                <StarIcon key={el} className='h-4 w-4 text-orange-300' />
+                <StarIcon key={el} className='h-4 w-4 text-orange-300' />
               </div>
               <p className='pl-5'>
                 Rated 5 stars by over 500 beta users

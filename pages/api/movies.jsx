@@ -29,3 +29,9 @@ export const getMovies = async (page, movieName = '', years = [], genres = []) =
 
   return movies
 }
+
+export const getMovie = async (movieId) => {
+  const movie = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${APIkey}&language=en-US`)
+
+  return movie.data
+}

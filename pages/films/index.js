@@ -26,7 +26,7 @@ function Films () {
   const [years, setYears] = useState([])
   const [movieName, setMovieName] = useState('')
 
-  const { status, error, data: movies } = useQuery({
+  const { status, data: movies } = useQuery({
     queryKey: ['movies', movieName, page, years, genres],
     keepPreviousData: true,
     queryFn: () => getMovies(parseInt(page) || 1, movieName, years, genres)
