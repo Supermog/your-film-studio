@@ -11,13 +11,25 @@ import {
 import MultiSelectTextField from '@/components/MultiSelectTextFiled'
 import { useState } from 'react'
 import MultiSelector from '@/components/MultiSelector'
-import { getMovies } from '../api/movies'
+import { getGenres, getMovies } from '../api/movies'
 import { useQuery } from 'react-query'
 import SlideOver from '@/components/Films/SlideOver'
 import classNames from '@/util/classNames'
 import fadingProgrammer from '@/public/FadingProgrammer.jpg'
 
-function Films () {
+export async function getStaticProps() {
+  const allGenres = await getGenres()
+
+  return {
+    props: {
+      allGenres
+    }
+  }
+}
+
+function Films (props) {
+
+  const { allGenres } = props
 
   const [open, setOpen] = useState(false)
   const [slideOverId, setSlideOverId] = useState()
@@ -63,6 +75,7 @@ function Films () {
               <MultiSelectTextField
                 title='genre'
                 clearText='Clear Filters'
+                allValues={allGenres}
                 values={genres}
                 onChange={setGenres}
               />
