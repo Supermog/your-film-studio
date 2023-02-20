@@ -85,7 +85,7 @@ function Films () {
               <div>
                 Loading...
               </div>
-            ) : (
+            ) : movies?.results?.length > 0 ? (
               <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-flow-row'>
                 {movies?.results ? movies.results.map((el) => {
                   return (
@@ -118,9 +118,13 @@ function Films () {
                   )
                 }) : null}
               </div>
+            ) : (
+              <div className='flex justify-center text-2xl font-bold'>
+                No results!
+              </div>
             )}
             {
-              movies?.results ? (
+              movies?.results && movies?.results.length > 0 ? (
                 <div className='mt-10'>
                   <div className='flex justify-between'>
                     <button
